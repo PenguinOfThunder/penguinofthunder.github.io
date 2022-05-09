@@ -29,7 +29,7 @@ github_username: PenguinOfThunder
 
 # Build settings
 #theme: jekyll-theme-slate
-remote_theme: poole/hyde@2.1.0
+remote_theme: poole/hyde@v2.1.0
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
