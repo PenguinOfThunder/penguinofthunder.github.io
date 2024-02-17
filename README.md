@@ -1,7 +1,10 @@
 # PenguinOfThunder
 
-I'm working on it!
+Under construction!
 
-Projects:
+Visit my [GitHub profile](https://github.com/PenguinOfThunder)
 
-- [Wowbot](https://github.com/PenguinOfThunder/wowbot) - a Discord bot written in TypeScript
+Projects hosted here:
+
+- [Steps calculator](./projects/stepscalc/stepscalc.html) - calculate how many steps you need to meet your monthly goal
+- More to come
