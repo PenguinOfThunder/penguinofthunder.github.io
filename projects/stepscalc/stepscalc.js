@@ -1,7 +1,12 @@
 /* eslint-env browser */
 
 import * as dateFns from "https://cdn.jsdelivr.net/npm/date-fns@3.3.1/+esm";
-import * as bs from "./bootstrap-helpers.js";
+import {
+  followColorScheme,
+  getPreferredTheme,
+  setTheme,
+  setStoredTheme
+} from "./bootstrap-helpers.js";
 
 /**
  * Update calculated values
@@ -9,7 +14,8 @@ import * as bs from "./bootstrap-helpers.js";
  */
 function calc() {
   try {
-    const form = document.forms["calc-form"];
+    /** @type {HTMLFormElement} */
+    const form = document.getElementById("calc-form");
     const stepsCompleted = Number.parseInt(
       form.elements.steps_completed.value,
       10
@@ -51,7 +57,8 @@ function calc() {
         });
         msgEl.innerText =
           `At your current rate of ${avgStepsPerDayStr} steps per day` +
-          `, you will complete your steps in ${projDaysRemainStr} days: ` +
+          ", you will complete your steps in " +
+          `${projDaysRemainStr} ${projDaysRemain === 1 ? "day" : "days"}: ` +
           `${dayToCompleteStr}.`;
       } else if (projDaysRemain <= 0) {
         msgEl.innerText =
@@ -94,65 +101,75 @@ function restoreSavedGoal() {
  * @returns {void} Nothing
  */
 function init() {
-  // Handle theme
-  bs.setTheme(bs.getPreferredTheme());
-  bs.followColorScheme();
+  try {
+    // Handle theme
+    setTheme(getPreferredTheme());
+    followColorScheme();
 
-  // Fill in defaults
-  const form = document.getElementById("calc-form");
-  form.elements.today.value = dateFns.format(new Date(), "yyyy-MM-dd");
+    // Fill in defaults
+    /** @type {HTMLFormElement} */
+    const form = document.getElementById("calc-form");
+    form.elements.today.value = dateFns.format(new Date(), "yyyy-MM-dd");
 
-  // Wire up event handlers
-  document
-    .getElementById("menuItemSaveCurrentGoal")
-    .addEventListener("click", () => {
-      localStorage.setItem(
-        "steps_required",
-        form.elements.steps_required.value
-      );
+    // Wire up event handlers
+    document
+      .getElementById("app-theme-select")
+      .addEventListener("change", (e) => {
+        const theme = e.target.value;
+        setTheme(theme);
+        setStoredTheme(theme);
+      });
+    document
+      .getElementById("daily-step-goal")
+      .addEventListener("change", (e) => {
+        const newVal = e.target.value;
+        const form = document.getElementById("calc-form");
+        form.elements.steps_required.value = newVal;
+        localStorage.setItem("steps_required", newVal);
+      });
+
+    const optionsModal = document.getElementById("optionsModal");
+    optionsModal.addEventListener("show.bs.modal", () => {
+      const form = document.getElementById("calc-form");
+      const optForm = document.getElementById("optionsForm");
+      optForm.elements["daily-step-goal"].value =
+        form.elements.steps_required.value;
     });
-  document
-    .getElementById("menuItemSetThemeLight")
-    .addEventListener("click", () => {
-      bs.setTheme("light");
-      bs.setStoredTheme("light");
-    });
-  document
-    .getElementById("menuItemSetThemeDark")
-    .addEventListener("click", () => {
-      bs.setTheme("dark");
-      bs.setStoredTheme("dark");
-    });
-  document
-    .getElementById("menuItemSetThemeAuto")
-    .addEventListener("click", () => {
-      bs.setTheme("auto");
-      bs.setStoredTheme("auto");
-    });
-  window.addEventListener("focus", calc, false);
-  // Handle form submit
-  document.getElementById("calc-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      e.stopPropagation();
-    }
-    // form.classList.add("was-validated");
-    calc();
-    return false;
-  });
-  // Recalculate when an input is updated
-  ["today", "steps_completed", "steps_required"].forEach((id) => {
-    const e = document.getElementById(id);
-    e.addEventListener("change", () => {
+    optionsModal.addEventListener("hidden.bs.modal", () => {
       calc();
     });
-  });
-  document.getElementById("steps_completed").addEventListener("focus", (e) => {
-    e.target.select(); // select all when focused
-  });
-  // Calculate initial value
-  restoreSavedGoal();
-  calc();
+    // Recalculate when window is focused
+    window.addEventListener("focus", calc, false);
+
+    // Handle form submit
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        e.stopPropagation();
+      }
+      // form.classList.add("was-validated");
+      calc();
+      return false;
+    });
+    // Recalculate when an input is updated
+    ["today", "steps_completed", "steps_required"].forEach((id) => {
+      const e = document.getElementById(id);
+      e.addEventListener("change", () => {
+        calc();
+      });
+    });
+    document
+      .getElementById("steps_completed")
+      .addEventListener("focus", (e) => {
+        e.target.select(); // select all when focused
+      });
+    // Calculate initial value
+    restoreSavedGoal();
+    calc();
+  } catch (err) {
+    console.error(err);
+    window.alert(`ERROR: ${err}`);
+  }
 }
 
 // Wait for page to be fully loaded
