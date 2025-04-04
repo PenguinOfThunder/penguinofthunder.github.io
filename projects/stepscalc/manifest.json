@@ -1,9 +1,0 @@
-{
-    "name": "StepsCalculator",
-    "short_name": "StepsCalc",
-    "description": "Calculates the steps remaining in this month to reach your goal",
-    "start_url": "/stepscalc/stepscalc.html",
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
-  }
