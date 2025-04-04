@@ -1,0 +1,29 @@
+{
+  "name": "penguinofthunder.github.io",
+  "version": "1.0.0",
+  "description": "**Under construction!**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rimraf _site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PenguinOfThunder/penguinofthunder.github.io.git"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/PenguinOfThunder/penguinofthunder.github.io/issues"
+  },
+  "homepage": "https://github.com/PenguinOfThunder/penguinofthunder.github.io#readme",
+  "type": "module",
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@picocss/pico": "^2.1.1",
+    "date-fns": "^4.1.0"
+  }
+}

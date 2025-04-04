@@ -1,0 +1,14 @@
+{
+    "locale": "en",
+    "dir": "ltr",
+    "languages": {
+        "en": "English",
+        "nb": "Norsk"
+    },
+    "read_in": "Read in",
+    "links": {
+        "home": "Home",
+        "projects": "Projects",
+        "about": "About"
+    }
+}

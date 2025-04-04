@@ -1,0 +1,15 @@
+<header>
+{% assign lang_links = page.url | locale_links %}
+<nav>
+    <ul>
+        <li><a href="{{ "/" | locale_url }}">{{ links["home"] }}</a></li>
+        <li><a href="{{ "/projects" | locale_url }}">{{ links["projects"] }}</a></li>
+        <li><a href="{{ "/about" | locale_url }}">{{ links["about"] }}</a></li>
+    </ul>
+    <ul>        
+    {%- for link in lang_links -%}
+        <li><a hreflang="{{link.lang}}" href="{{link.url}}">{{ languages[link.lang] }}</a></li>
+    {%- endfor -%}
+    </ul>
+</nav>
+</header>
