@@ -1,0 +1,7 @@
+<footer>
+  <small>
+    Copyright &copy; {{ common.copyright.first }}&ndash;{{ 'today' | date: "%Y" }} {{ common.copyright.holder }}
+    &mdash;
+    {{ page.date | datei18n: locales: page.lang, dateStyle: "short", timeStyle: "long", timeZone:"UTC" }}
+    </small>
+</footer>

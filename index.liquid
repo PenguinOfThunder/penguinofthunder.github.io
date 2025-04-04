@@ -1,0 +1,14 @@
+---
+layout: bare.liquid
+---
+<header>
+<h1>Penguin of Thunder</h1>
+</header>
+<main>
+This site is available in:
+<ul>
+    <li><a href="{{ "/" | locale_url: "en" }}" hreflang="en">English</a></li>
+    <li><a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">Norsk</a></li>
+</ul>
+</main>
+{% include "footer.liquid" %}
