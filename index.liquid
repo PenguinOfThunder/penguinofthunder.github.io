@@ -10,12 +10,13 @@ if(navigator.languages.includes("nb")) {
 }
 </script>
 <header>
-<h1>Penguin of Thunder</h1>
+    <h1>Penguin of Thunder</h1>
 </header>
 <main>
-<ul>
-    <li>{{ translation.choose_language.en }}: <a href="{{ "/" | locale_url: "en" }}" hreflang="en">{{ "en" | language_name }}</a></li>
-    <li>{{ translation.choose_language.nb }}: <a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">{{ "nb" | language_name }}</a></li>
-</ul>
+    <ul>
+        {% for lang in languages %}
+            <li>{{ translation.choose_language[lang] }}: <a href="{{ "/" | locale_url: lang }}" hreflang="{{ lang }}">{{ lang | language_name }}</a></li>
+        {% endfor  %}
+    </ul>
 </main>
 {% include "footer.liquid" %}

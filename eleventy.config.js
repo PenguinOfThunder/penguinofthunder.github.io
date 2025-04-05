@@ -7,13 +7,13 @@ import { datei18n, language_name } from "./lib/custom-filters.js";
 const publicBaseUrl = "https://penguinofthunder.github.io/";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addGlobalData("languages", ["en", "nb"]);
   eleventyConfig.addPlugin(syntaxHighlight, {
     // Added in 5.0.0, throw errors on invalid language names
     errorOnInvalidLanguage: false,
   });
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
-    baseHref:
-      process.env.NODE_ENV === "production" ? publicBaseUrl : "/",
+    baseHref: process.env.NODE_ENV === "production" ? publicBaseUrl : "/",
     extensions: "html",
   });
   eleventyConfig.addPlugin(EleventyI18nPlugin, {
@@ -52,7 +52,7 @@ export default function (eleventyConfig) {
         removeComments: true,
         collapseWhitespace: true,
         minifyJS: true,
-        minifyCSS: true
+        minifyCSS: true,
       });
 
       return minified;

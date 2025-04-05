@@ -3,16 +3,6 @@
         "en": "Choose language",
         "nb": "Velg språk"
     },
-    "languages": {
-        "en": {
-            "name": "English",
-            "flag": "🇺🇸"
-        },
-        "nb": {
-            "name": "Norsk",
-            "flag": "🇳🇴"
-        }
-    },
     "dark_theme": {
         "en": "Dark mode",
         "nb": "Mørk modus"
