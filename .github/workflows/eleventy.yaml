@@ -35,6 +35,8 @@ jobs:
         run: npm ci
       - name: npm_build
         run: npm run build
+        env:
+          NODE_ENV: production
       - name: UploadArtifact
         uses: actions/upload-artifact@v4
         with:
