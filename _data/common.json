@@ -1,7 +1,10 @@
 {
-    "copyright": {
-        "holder": "Penguin of Thunder",
-        "first": "2025",
-        "last": "2025"
-    }
+  "copyright": {
+    "holder": "Penguin of Thunder",
+    "first": "2025",
+    "last": "2025"
+  },
+  "meta": {
+    "description": "Penguin of Thunder's personal page"
+  }
 }

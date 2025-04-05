@@ -13,20 +13,9 @@ if(navigator.languages.includes("nb")) {
 <h1>Penguin of Thunder</h1>
 </header>
 <main>
-<h2>{{ translation.choose_language.en }} / {{ translation.choose_language.nb }}</h2>
 <ul>
-    <li> {{ translation.languages.en.flag }} <a href="{{ "/" | locale_url: "en" }}" hreflang="en">{{ translation.languages.en.name }}</a></li>
-    <li> {{ translation.languages.nb.flag }} <a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">{{ translation.languages.nb.name }}</a></li>
+    <li>{{ translation.choose_language.en }}: <a href="{{ "/" | locale_url: "en" }}" hreflang="en">{{ "en" | language_name }}</a></li>
+    <li>{{ translation.choose_language.nb }}: <a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">{{ "nb" | language_name }}</a></li>
 </ul>
-
-{% highlight js %}
-/**
- * Negotitate the language with the user. 
- */
-function autoDetectLanguage() {
-    // make the user pick
-    // TODO: get information from browser
-}
-{% endhighlight %}
 </main>
 {% include "footer.liquid" %}

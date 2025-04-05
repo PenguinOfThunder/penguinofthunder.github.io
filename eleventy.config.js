@@ -1,13 +1,20 @@
-import { EleventyI18nPlugin } from "@11ty/eleventy";
+import { EleventyI18nPlugin, EleventyHtmlBasePlugin } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
 import { datei18n, language_name } from "./lib/custom-filters.js";
 
+const publicBaseUrl = "https://penguinofthunder.github.io/";
+
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
     // Added in 5.0.0, throw errors on invalid language names
     errorOnInvalidLanguage: false,
+  });
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
+    baseHref:
+      process.env.NODE_ENV === "production" ? publicBaseUrl : "/",
+    extensions: "html",
   });
   eleventyConfig.addPlugin(EleventyI18nPlugin, {
     defaultLanguage: "en",
@@ -39,19 +46,19 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("language_name", language_name);
 
   eleventyConfig.addTransform("htmlmin", function (content) {
-		if ((this.page.outputPath || "").endsWith(".html")) {
-			let minified = htmlmin.minify(content, {
-				useShortDoctype: true,
-				removeComments: true,
-				collapseWhitespace: true,
+    if ((this.page.outputPath || "").endsWith(".html")) {
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
         minifyJS: true,
         minifyCSS: true
-			});
+      });
 
-			return minified;
-		}
+      return minified;
+    }
 
-		// If not an HTML output, return content as-is
-		return content;
-	});
+    // If not an HTML output, return content as-is
+    return content;
+  });
 }

@@ -1,13 +1,18 @@
+{% assign lang_links = page.url | locale_links %}
 <!DOCTYPE html>
 <html lang="{{ page.lang }}" dir="{{ dir  }}">
   <head>
     <meta charset="utf-8" />
+    <meta name="description" content="{{ common.meta.description |  escape }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark">
-<title>{{ title }}{% if languages[page.lang] %} ({{ page.lang | language_name }}){% endif %}</title>
+    <title>{{ title }}{% if languages[page.lang] %} ({{ page.lang | language_name }}){% endif %}</title>
     <link rel="stylesheet" href="/bundle.css" />
-    <link rel="canonical" href="{{page.url}}">
-  </head>
+    <link rel="canonical" href="{{page.url | locale_url }}" hreflang="{{ page.lang }}" />
+    {%- for link in lang_links -%}
+      <link rel="alternate" hreflang="{{link.lang}}" href="{{link.url}}" />
+    {%- endfor -%}
+    </head>
   <body class="container">
     {{ content }}
   </body>
