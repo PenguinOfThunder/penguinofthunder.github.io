@@ -1,6 +1,7 @@
 import { EleventyI18nPlugin } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginIcons from "eleventy-plugin-icons";
+import htmlmin from "html-minifier-terser";
 import { datei18n, language_name } from "./lib/custom-filters.js";
 
 export default function (eleventyConfig) {
@@ -36,4 +37,21 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images/");
   eleventyConfig.addFilter("datei18n", datei18n);
   eleventyConfig.addFilter("language_name", language_name);
+
+  eleventyConfig.addTransform("htmlmin", function (content) {
+		if ((this.page.outputPath || "").endsWith(".html")) {
+			let minified = htmlmin.minify(content, {
+				useShortDoctype: true,
+				removeComments: true,
+				collapseWhitespace: true,
+        minifyJS: true,
+        minifyCSS: true
+			});
+
+			return minified;
+		}
+
+		// If not an HTML output, return content as-is
+		return content;
+	});
 }

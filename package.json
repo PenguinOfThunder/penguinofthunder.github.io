@@ -26,6 +26,7 @@
     "@picocss/pico": "^2.1.1",
     "date-fns": "^4.1.0",
     "eleventy-plugin-icons": "^4.5.3",
+    "html-minifier-terser": "^7.2.0",
     "lucide-static": "^0.487.0"
   }
 }
