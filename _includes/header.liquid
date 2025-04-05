@@ -1,10 +1,16 @@
 <header>
-{% case section %}
-{% when "home"     %}{% assign classes_home     = "contrast" %}
-{% when "projects" %}{% assign classes_projects = "contrast" %}
-{% when "about"    %}{% assign classes_about    = "contrast" %}
-{% else  %}{% assign classes_home = "contrast" %}
-{% endcase  %}
+{%- liquid
+    case section 
+        when "home"
+            assign classes_home     = "contrast" 
+        when "projects"
+            assign classes_projects = "contrast" 
+        when "about"
+            assign classes_about    = "contrast" 
+        else
+            assign classes_home = "contrast" 
+    endcase
+ -%}
 <nav>
     <ul>
         <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ links["home"] }}</a></li>
