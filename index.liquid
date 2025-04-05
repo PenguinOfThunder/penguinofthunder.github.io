@@ -1,14 +1,32 @@
 ---
 layout: bare.liquid
+title: Choose Language/Velg språk
 ---
+<script>
+if(navigator.languages.includes("nb")) {
+    window.location.href = "{{ "/" | locale_url: "nb" }}";
+} else {
+    window.location.href = "{{ "/" | locale_url: "en" }}";
+}
+</script>
 <header>
 <h1>Penguin of Thunder</h1>
 </header>
 <main>
-This site is available in:
+<h2>{{ translation.choose_language.en }} / {{ translation.choose_language.nb }}</h2>
 <ul>
-    <li><a href="{{ "/" | locale_url: "en" }}" hreflang="en">English</a></li>
-    <li><a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">Norsk</a></li>
+    <li> {{ translation.languages.en.flag }} <a href="{{ "/" | locale_url: "en" }}" hreflang="en">{{ translation.languages.en.name }}</a></li>
+    <li> {{ translation.languages.nb.flag }} <a href="{{ "/" | locale_url: "nb" }}" hreflang="nb">{{ translation.languages.nb.name }}</a></li>
 </ul>
+
+{% highlight js %}
+/**
+ * Negotitate the language with the user. 
+ */
+function autoDetectLanguage() {
+    // make the user pick
+    // TODO: get information from browser
+}
+{% endhighlight %}
 </main>
 {% include "footer.liquid" %}

@@ -1,15 +1,19 @@
 <header>
-{% assign lang_links = page.url | locale_links %}
+{% case section %}
+{% when "home"     %}{% assign classes_home     = "contrast" %}
+{% when "projects" %}{% assign classes_projects = "contrast" %}
+{% when "about"    %}{% assign classes_about    = "contrast" %}
+{% else  %}{% assign classes_home = "contrast" %}
+{% endcase  %}
 <nav>
     <ul>
-        <li><a href="{{ "/" | locale_url }}">{{ links["home"] }}</a></li>
-        <li><a href="{{ "/projects" | locale_url }}">{{ links["projects"] }}</a></li>
-        <li><a href="{{ "/about" | locale_url }}">{{ links["about"] }}</a></li>
+        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ links["home"] }}</a></li>
+        <li><a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %} {{ links["projects"] }}</a></li>
+        <li><a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %} {{ links["about"] }}</a></li>
     </ul>
-    <ul>        
-    {%- for link in lang_links -%}
-        <li><a hreflang="{{link.lang}}" href="{{link.url}}">{{ languages[link.lang] }}</a></li>
-    {%- endfor -%}
+    <ul>
+        <li>{% include "themepicker.liquid" %}</li>
+        <li>{% include "langpicker.liquid" %}</li>
     </ul>
 </nav>
 </header>

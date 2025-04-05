@@ -2,6 +2,6 @@
   <small>
     Copyright &copy; {{ common.copyright.first }}&ndash;{{ 'today' | date: "%Y" }} {{ common.copyright.holder }}
     &mdash;
-    {{ page.date | datei18n: locales: page.lang, dateStyle: "short", timeStyle: "long", timeZone:"UTC" }}
+    <time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}">{{ page.date | datei18n: locales: page.lang, dateStyle: "long", timeStyle: "long", timeZone:"UTC" }}</time>
     </small>
 </footer>

@@ -1,6 +1,7 @@
 import { EleventyI18nPlugin } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
-import * as dateFns from "date-fns";
+import pluginIcons from "eleventy-plugin-icons";
+import { datei18n, language_name } from "./lib/custom-filters.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
@@ -22,13 +23,17 @@ export default function (eleventyConfig) {
     // errorMode: "allow-fallback", // only throw an error when the content is missing at both /en/slug and /slug
     // errorMode: "never", // don’t throw errors for missing content
   });
-  eleventyConfig.addPassthroughCopy("bundle.css");
-  eleventyConfig.addPassthroughCopy("images/");
-  eleventyConfig.addFilter("datei18n", (input, ...args) => {
-    const params = Object.fromEntries(args);
-    const { locales, ...options } = params;
-    // return JSON.stringify({input, ...params});
-    const d = input === "now" ? new Date() : Date.parse(input);
-    return new Intl.DateTimeFormat(locales, options).format(d);
+  eleventyConfig.addPlugin(pluginIcons, {
+    mode: "inline",
+    sources: [
+      {
+        name: "lucide",
+        path: "node_modules/lucide-static/icons",
+        default: true,
+      },
+    ],
   });
+  eleventyConfig.addPassthroughCopy("images/");
+  eleventyConfig.addFilter("datei18n", datei18n);
+  eleventyConfig.addFilter("language_name", language_name);
 }

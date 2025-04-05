@@ -1,0 +1,37 @@
+<script>  
+  function setTheme(newTheme) {
+    if (newTheme == "light" || newTheme == "dark") {
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.removeItem("theme");
+    }
+  }
+  function getPreferredTheme() {
+    let savedTheme = localStorage.getItem("theme");
+    if (savedTheme !== "dark" && savedTheme !== "light") {
+      savedTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return savedTheme;
+  }
+  // set on load
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-set-theme]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        setTheme(this.getAttribute("data-set-theme"));
+      });
+    });
+    setTheme(getPreferredTheme());
+  });
+  </script>
+<details class="dropdown">
+  <summary>{% icon "palette" %}</summary>
+  <ul dir="rtl">
+    <li onclick="setTheme('light')">{{ translation.light_theme[page.lang] }}{% icon "sun" %}</li>
+    <li onclick="setTheme('dark')">{{ translation.dark_theme[page.lang] }}{% icon "moon" %} </li>
+    <li onclick="setTheme('')">{{ translation.system_theme[page.lang] }}{% icon "sun-moon" %}</li>
+  </ul>
+</details>
