@@ -1,17 +1,8 @@
 ---
-layout: bare.liquid
+layout: main.liquid
 title: Choose Language/Velg språk
+navless: true
 ---
-<script>
-if(navigator.languages.includes("nb")) {
-    window.location.href = "{{ "/" | locale_url: "nb" }}";
-} else {
-    window.location.href = "{{ "/" | locale_url: "en" }}";
-}
-</script>
-<header>
-    <h1>Penguin of Thunder</h1>
-</header>
 <main>
     <ul>
         {% for lang in languages %}
@@ -19,4 +10,13 @@ if(navigator.languages.includes("nb")) {
         {% endfor  %}
     </ul>
 </main>
-{% include "footer.liquid" %}
+<script defer>
+    let resolvedLang = {{ languages | first | json }};
+    for(let i = 0; i < navigator.languages.length; i++) {
+        if({{ languages | json }}.includes( navigator.languages[i])) {
+            resolvedLang = navigator.languages[i];
+            break;
+        }
+    }
+    // window.location.href = "{{ "/" | locale_url: resolvedLang }}";
+</script>

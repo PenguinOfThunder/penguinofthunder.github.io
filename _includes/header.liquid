@@ -1,25 +1,23 @@
 <header>
 {%- liquid
-    case section 
+    case section
         when "home"
-            assign classes_home     = "contrast" 
+            assign classes_home     = "contrast"
         when "projects"
-            assign classes_projects = "contrast" 
+            assign classes_projects = "contrast"
         when "about"
-            assign classes_about    = "contrast" 
+            assign classes_about    = "contrast"
         else
-            assign classes_home = "contrast" 
+            assign classes_home = "contrast"
     endcase
  -%}
-<nav>
-    <ul>
-        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ links["home"] }}</a></li>
-        <li><a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %} {{ links["projects"] }}</a></li>
-        <li><a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %} {{ links["about"] }}</a></li>
-    </ul>
-    <ul>
-        <li>{% include "themepicker.liquid" %}</li>
-        <li>{% include "langpicker.liquid" %}</li>
-    </ul>
-</nav>
+{%- if not navless %}{% include "nav.liquid" %}{% endif -%}
+{%- if title and subtitle -%}
+    <hgroup>
+    <h1>{{ title | escape }}</h1>
+    <h2>{{ subtitle }}</h2>
+    </hgroup>
+{%- else -%}
+{%- if title -%}<h1>{{ title | escape }}</h1>{%- endif -%}
+{% endif %}
 </header>

@@ -1,6 +1,6 @@
 ---
 layout: bare.liquid
 ---
-{% include "header.liquid" %}
+{%- include "header.liquid", section: section, title: title, subtitle: subtitle -%}
 <main>{{ content }}</main>
-{% include "footer.liquid" %}
+{%- render "footer.liquid", page: page -%}
