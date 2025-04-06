@@ -1,0 +1,21 @@
+---
+layout: bare.liquid
+---
+{%- if not navless %}{% render "nav.liquid" page: page, section: section %}{% endif -%}    
+<article>
+<header>
+    <div class="text-secondary text-align-end">
+        <small><em><time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}">{{ page.date | datei18n: dateStyle: "full", timeStyle: "short" }}</time></em></small>
+    </div>
+{%- if title and subtitle -%}
+<hgroup>
+<h1>{{ title | escape }}</h1>
+<h2>{{ subtitle | escape }}</h2>
+</hgroup>
+{%- else -%}
+{%- if title -%}<h1>{{ title | escape }}</h1>{%- endif -%}
+{% endif %}
+
+</header>
+<main>{{ content }}</main>
+{%- render "footer.liquid" page: page, common: common -%}

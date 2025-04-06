@@ -1,7 +1,9 @@
-{% assign lang_links = page.url | locale_links %}
+{%- assign lang_links = page.url | locale_links -%}
+{%- if lang_links.size > 0 -%}
 <details class="dropdown">
-    <summary>{% icon "languages" %}</summary>
+    <summary>{% icon "languages" %}</summary>    
     <ul dir="rtl">{%- for link in lang_links -%}
         <li><a hreflang="{{link.lang}}" href="{{link.url}}">{{ link.lang | language_name: lang: link.lang }}</a></li>
     {%- endfor -%}</ul>
 </details>
+{%- endif -%}

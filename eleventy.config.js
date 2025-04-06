@@ -1,6 +1,12 @@
-import { EleventyHtmlBasePlugin, EleventyI18nPlugin, EleventyRenderPlugin } from "@11ty/eleventy";
+import {
+  EleventyHtmlBasePlugin,
+  EleventyI18nPlugin,
+  EleventyRenderPlugin,
+} from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import i18n from "eleventy-plugin-i18n";
+import markdownItMark from "markdown-it-mark";
+import markdownItFootnote from "markdown-it-footnote";
 import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
 import translations from "./_data/translations.js";
@@ -25,8 +31,8 @@ export default function (eleventyConfig) {
     locales: ["en", "nb"],
     translations,
     fallbackLocales: {
-      "no": "nb",
-      "nn": "nb",
+      no: "nb",
+      nn: "nb",
       "*": "en",
     },
   });
@@ -63,7 +69,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("script_name", customFilters.script_name);
   eleventyConfig.addFilter("currency_name", customFilters.currency_name);
   eleventyConfig.addFilter("calendar_name", customFilters.calendar_name);
-  eleventyConfig.addFilter("dateTimeField_name", customFilters.dateTimeField_name);
+  eleventyConfig.addFilter(
+    "dateTimeField_name",
+    customFilters.dateTimeField_name
+  );
+
+  // amend markdown features
+  eleventyConfig.amendLibrary("md", (mdLib) => {
+    mdLib.set({ html: true, breaks: true, typographer: true, linkify: false });
+    mdLib.use(markdownItMark);
+    mdLib.use(markdownItFootnote);
+  });
 
   eleventyConfig.addTransform("htmlmin", function (content) {
     if ((this.page.outputPath || "").endsWith(".html")) {

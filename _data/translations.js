@@ -1,4 +1,4 @@
-import { de } from "date-fns/locale";
+import { de, nb } from "date-fns/locale";
 
 export default {
   meta: {
@@ -59,6 +59,13 @@ export default {
       de: "Startseite",
       fr: "Accueil",
       es: "Inicio",
+    },
+    posts: {
+      nb: "Innlegg",
+      en: "Posts",
+      de: "Beiträge",
+      fr: "Articles",
+      es: "Publicaciones",
     },
     projects: {
       nb: "Prosjekter",

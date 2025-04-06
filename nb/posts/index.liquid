@@ -1,0 +1,13 @@
+---
+layout: main.liquid
+title: Innlegg
+eleventyExcludeFromCollections: true
+---
+
+<ul>
+{%- for post in collections.post -%}
+    <li>
+        <a href="{{ post.url }}">{{ post.data.title | escape }}</a> &mdash; {{ post.date | datei18n: dateStyle: "long", timeZone:"America/New_York"}}
+    </li>
+{% endfor %}
+</ul>
