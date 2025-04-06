@@ -1,4 +1,4 @@
-{
+export default {
     "choose_language": {
         "en": "Choose language",
         "nb": "Velg språk"

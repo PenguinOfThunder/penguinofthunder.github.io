@@ -1,7 +1,9 @@
-import { EleventyI18nPlugin, EleventyHtmlBasePlugin } from "@11ty/eleventy";
+import { EleventyHtmlBasePlugin, EleventyI18nPlugin } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import i18n from "eleventy-plugin-i18n";
 import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
+import translations from "./_data/translations.js";
 import { datei18n, language_name } from "./lib/custom-filters.js";
 
 const publicBaseUrl = "https://penguinofthunder.github.io/";
@@ -30,6 +32,13 @@ export default function (eleventyConfig) {
     errorMode: "strict", // throw an error if content is missing at /en/slug
     // errorMode: "allow-fallback", // only throw an error when the content is missing at both /en/slug and /slug
     // errorMode: "never", // don’t throw errors for missing content
+  });
+  eleventyConfig.addPlugin(i18n, {
+    locales: ["en", "nb"],
+    translations,
+    fallbackLocales: {
+      "*": "en",
+    },
   });
   eleventyConfig.addPlugin(pluginIcons, {
     mode: "inline",

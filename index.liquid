@@ -6,11 +6,11 @@ navless: true
 <main>
     <ul>
         {% for lang in languages %}
-            <li>{{ translation.choose_language[lang] }}: <a href="{{ "/" | locale_url: lang }}" hreflang="{{ lang }}">{{ lang | language_name }}</a></li>
+            <li>{{ "choose_language" | i18n: null, lang }}: <a href="{{ "/" | locale_url: lang }}" hreflang="{{ lang }}">{{ lang | language_name }}</a></li>
         {% endfor  %}
     </ul>
 </main>
-<script defer>
+<script>
     let resolvedLang = {{ languages | first | json }};
     for(let i = 0; i < navigator.languages.length; i++) {
         if({{ languages | json }}.includes( navigator.languages[i])) {
@@ -18,5 +18,5 @@ navless: true
             break;
         }
     }
-    // window.location.href = "{{ "/" | locale_url: resolvedLang }}";
+    window.location.href = "{{ "/" | locale_url: resolvedLang }}";
 </script>

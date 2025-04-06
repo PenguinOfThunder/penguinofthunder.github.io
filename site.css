@@ -1,1 +1,12 @@
 /* site.css */
+html[data-theme="dark"] [data-theme-selector="dark"] {
+    color: var(--pico-primary);
+}
+
+html[data-theme="light"] [data-theme-selector="light"] {
+    color: var(--pico-primary);
+}
+
+html:not([data-theme]) [data-theme-selector="system"] {
+    color: var(--pico-primary);
+}

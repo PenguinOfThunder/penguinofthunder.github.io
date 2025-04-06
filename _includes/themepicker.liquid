@@ -30,8 +30,8 @@
 <details class="dropdown">
   <summary>{% icon "palette" %}</summary>
   <ul dir="rtl">
-    <li onclick="setTheme('light')">{{ translation.light_theme[page.lang] }}{% icon "sun" %}</li>
-    <li onclick="setTheme('dark')">{{ translation.dark_theme[page.lang] }}{% icon "moon" %} </li>
-    <li onclick="setTheme('')">{{ translation.system_theme[page.lang] }}{% icon "sun-moon" %}</li>
+    <li data-theme-selector="light" onclick="setTheme('light')">{{ "light_theme" | i18n }}{% icon "sun" %}</li>
+    <li data-theme-selector="dark" onclick="setTheme('dark')">{{ "dark_theme" | i18n }}{% icon "moon" %} </li>
+    <li data-theme-selector="system" onclick="setTheme('')">{{ "system_theme" | i18n }}{% icon "sun-moon" %}</li>
   </ul>
 </details>
