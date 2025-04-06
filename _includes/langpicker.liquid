@@ -2,6 +2,6 @@
 <details class="dropdown">
     <summary>{% icon "languages" %}</summary>
     <ul dir="rtl">{%- for link in lang_links -%}
-        <li><a hreflang="{{link.lang}}" href="{{link.url}}">{{ link.lang | language_name }}</a></li>
+        <li><a hreflang="{{link.lang}}" href="{{link.url}}">{{ link.lang | language_name: lang: link.lang }}</a></li>
     {%- endfor -%}</ul>
 </details>

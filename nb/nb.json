@@ -1,14 +1,4 @@
 {
     "locale": "nb",
-    "dir": "ltr",
-    "languages": {
-        "en": "English",
-        "nb": "Norsk"
-    },
-    "read_in": "Les på",
-    "links": {
-        "home": "Hjem",
-        "projects": "Prosjekter",
-        "about": "Om meg"
-    }
+    "dir": "ltr"
 }

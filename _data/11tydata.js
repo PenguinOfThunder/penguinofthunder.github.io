@@ -1,5 +1,5 @@
 let data = {
-  date: "Last Modified",
+  date: "Last Modified"
 };
 
 if (process.env.NODE_ENV === "production") {

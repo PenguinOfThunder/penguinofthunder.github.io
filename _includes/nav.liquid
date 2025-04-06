@@ -1,8 +1,20 @@
+{%- liquid
+    case section
+        when "home"
+            assign classes_home     = "contrast"
+        when "projects"
+            assign classes_projects = "contrast"
+        when "about"
+            assign classes_about    = "contrast"
+        else
+            assign classes_home = "contrast"
+    endcase
+ -%}
 <nav>
     <ul>
-        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ links["home"] }}</a></li>
-        <li><a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %} {{ links["projects"] }}</a></li>
-        <li><a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %} {{ links["about"] }}</a></li>
+        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ "links.home" | i18n }}</a></li>
+        <li><a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %} {{ "links.projects" | i18n }}</a></li>
+        <li><a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %} {{ "links.about" | i18n }}</a></li>
     </ul>
     <ul>
         <li>{% include "themepicker.liquid" %}</li>

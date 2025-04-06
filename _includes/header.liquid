@@ -1,17 +1,6 @@
+{%- if not navless %}{% render "nav.liquid" page: page, section: section %}{% endif -%}    
+<article>
 <header>
-{%- liquid
-    case section
-        when "home"
-            assign classes_home     = "contrast"
-        when "projects"
-            assign classes_projects = "contrast"
-        when "about"
-            assign classes_about    = "contrast"
-        else
-            assign classes_home = "contrast"
-    endcase
- -%}
-{%- if not navless %}{% include "nav.liquid" %}{% endif -%}
 {%- if title and subtitle -%}
     <hgroup>
     <h1>{{ title | escape }}</h1>
