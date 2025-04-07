@@ -32,14 +32,29 @@ html:not([data-theme]) [data-theme-selector="system"] {
   color: var(--pico-mark-color);
   background-color: var(--pico-mark-background-color);
 }
-
+hgroup {
+  margin-bottom: 0;
+}
 .active {
   color: var(--pico-contrast-color);
 }
-
+.nav-label {
+    text-wrap: nowrap;
+}
+nav > ul > li :hover {
+    background-color: var(--pico-mark-background-color);
+}
+.post-date {
+    font-size: smaller;
+    color: var(--pico-muted-color);
+    float: inline-end;
+}
 /* Hide the nav-label on small screens */
 @media (max-width: 576px) {
   .nav-label {
     display: none;
+  }
+  .post-date {
+    float: none;
   }
 }

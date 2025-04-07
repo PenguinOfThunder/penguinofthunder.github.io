@@ -1,10 +1,10 @@
 ---
 layout: bare.liquid
 ---
-{%- if not navless %}{% render "nav.liquid" page: page, section: section %}{% endif -%}    
+{%- if not navless %}{% render "nav.liquid" page: page, section: section %}{% endif -%}
 <article>
 <header>
-    <div class="text-secondary text-align-end">
+    <div class="post-date text-secondary">
         <small><em><time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}">{{ page.date | datei18n: dateStyle: "full", timeStyle: "short" }}</time></em></small>
     </div>
 {%- if title and subtitle -%}
