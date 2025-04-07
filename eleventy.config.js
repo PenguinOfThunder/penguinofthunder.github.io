@@ -5,10 +5,11 @@ import {
 } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import i18n from "eleventy-plugin-i18n";
-import markdownItMark from "markdown-it-mark";
-import markdownItFootnote from "markdown-it-footnote";
 import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
+import markdownItFootnote from "markdown-it-footnote";
+import markdownItMark from "markdown-it-mark";
+import * as sass from "sass";
 import translations from "./_data/translations.js";
 import * as customFilters from "./lib/custom-filters.js";
 
@@ -79,6 +80,25 @@ export default function (eleventyConfig) {
     mdLib.set({ html: true, breaks: true, typographer: true, linkify: false });
     mdLib.use(markdownItMark);
     mdLib.use(markdownItFootnote);
+  });
+
+  // Add SCSS support
+  eleventyConfig.addTemplateFormats("scss");
+  eleventyConfig.addExtension("scss", {
+    outputFileExtension: "css", // optional, default: "html"
+    // `compile` is called once per .scss file in the input directory
+    compile: async function (inputContent) {
+      let result = sass.compileString(inputContent,{
+        loadPaths: ["."],
+        minify: true,
+        style: "compressed",
+      });
+
+      // This is the render function, `data` is the full data cascade
+      return async (data) => {
+        return result.css;
+      };
+    },
   });
 
   eleventyConfig.addTransform("htmlmin", function (content) {
