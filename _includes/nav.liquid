@@ -1,23 +1,35 @@
 {%- liquid
     case section
         when "home"
-            assign classes_home     = "contrast"
+            assign classes_home     = "active"
         when "posts"
-            assign classes_posts = "contrast"
+            assign classes_posts = "active"
         when "projects"
-            assign classes_projects = "contrast"
+            assign classes_projects = "active"
         when "about"
-            assign classes_about    = "contrast"
+            assign classes_about    = "active"
         else
-            assign classes_home = "contrast"
+            assign classes_home = "active"
     endcase
  -%}
 <nav>
-    <ul>
-        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">{% icon "house" %} {{ "links.home" | i18n }}</a></li>
-        <li><a class="{{ classes_posts }}" href="{{ "/posts" | locale_url }}">{% icon "sticky-note" %} {{ "links.posts" | i18n }}</a></li>
-        <li><a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %} {{ "links.projects" | i18n }}</a></li>
-        <li><a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %} {{ "links.about" | i18n }}</a></li>
+    <ul>        
+        <li><a class="{{ classes_home }}" href="{{ "/" | locale_url }}">
+            <img src="/images/penguin.png" class="icon" width="24" height="24"/>
+            <span class="nav-label">{{ "links.home" | i18n }}</span></a>
+        </li>
+        <li>
+            <a class="{{ classes_posts }}" href="{{ "/posts" | locale_url }}">{% icon "sticky-note" %}
+            <span class="nav-label">{{ "links.posts" | i18n }}</span></a>
+        </li>
+        <li>
+            <a class="{{ classes_projects }}" href="{{ "/projects" | locale_url }}">{% icon "wrench" %}
+            <span class="nav-label">{{ "links.projects" | i18n }}</span></a>
+        </li>
+        <li>
+            <a class="{{ classes_about }}" href="{{ "/about" | locale_url }}">{% icon "user-round" %}
+            <span class="nav-label">{{ "links.about" | i18n }}</span></a>
+        </li>
     </ul>
     <ul>
         <li>{% include "themepicker.liquid" %}</li>

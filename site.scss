@@ -1,6 +1,6 @@
 /* site.scss */
 @use "node_modules/@picocss/pico/scss/pico" with (
-  $theme-color: "purple"
+  $theme-color: "blue"
 );
 @use "node_modules/prismjs/themes/prism-okaidia.css";
 
@@ -31,4 +31,15 @@ html:not([data-theme]) [data-theme-selector="system"] {
 :target {
   color: var(--pico-mark-color);
   background-color: var(--pico-mark-background-color);
+}
+
+.active {
+  color: var(--pico-contrast-color);
+}
+
+/* Hide the nav-label on small screens */
+@media (max-width: 576px) {
+  .nav-label {
+    display: none;
+  }
 }
