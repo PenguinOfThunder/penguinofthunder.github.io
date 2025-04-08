@@ -31,6 +31,14 @@
     "lucide-static": "^0.487.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
-    "sass": "^1.86.3"
+    "sass": "^1.86.3",
+    "rimraf": "^5.0.0"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "jsxSingleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": true
   }
 }

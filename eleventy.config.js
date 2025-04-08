@@ -1,7 +1,7 @@
 import {
   EleventyHtmlBasePlugin,
   EleventyI18nPlugin,
-  EleventyRenderPlugin,
+  EleventyRenderPlugin
 } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import i18n from "eleventy-plugin-i18n";
@@ -22,11 +22,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(syntaxHighlight, {
     // Added in 5.0.0, throw errors on invalid language names
-    errorOnInvalidLanguage: false,
+    errorOnInvalidLanguage: false
   });
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
     baseHref: process.env.NODE_ENV === "production" ? publicBaseUrl : "/",
-    extensions: "html",
+    extensions: "html"
   });
   eleventyConfig.addPlugin(i18n, {
     locales: ["en", "nb"],
@@ -34,8 +34,8 @@ export default function (eleventyConfig) {
     fallbackLocales: {
       no: "nb",
       nn: "nb",
-      "*": "en",
-    },
+      "*": "en"
+    }
   });
   eleventyConfig.addPlugin(EleventyI18nPlugin, {
     defaultLanguage: "en",
@@ -45,10 +45,10 @@ export default function (eleventyConfig) {
       url: "locale_url",
 
       // find the other localized content for a specific input file
-      links: "locale_links",
+      links: "locale_links"
     },
     // When to throw errors for missing localized content files
-    errorMode: "strict", // throw an error if content is missing at /en/slug
+    errorMode: "strict" // throw an error if content is missing at /en/slug
     // errorMode: "allow-fallback", // only throw an error when the content is missing at both /en/slug and /slug
     // errorMode: "never", // don’t throw errors for missing content
   });
@@ -58,9 +58,9 @@ export default function (eleventyConfig) {
       {
         name: "lucide",
         path: "node_modules/lucide-static/icons",
-        default: true,
-      },
-    ],
+        default: true
+      }
+    ]
   });
   eleventyConfig.addPassthroughCopy("images/");
   eleventyConfig.addFilter("datei18n", customFilters.datetime_format);
@@ -88,17 +88,17 @@ export default function (eleventyConfig) {
     outputFileExtension: "css", // optional, default: "html"
     // `compile` is called once per .scss file in the input directory
     compile: async function (inputContent) {
-      let result = sass.compileString(inputContent,{
+      let result = sass.compileString(inputContent, {
         loadPaths: ["."],
         minify: true,
-        style: "compressed",
+        style: "compressed"
       });
 
       // This is the render function, `data` is the full data cascade
       return async (data) => {
         return result.css;
       };
-    },
+    }
   });
 
   eleventyConfig.addTransform("htmlmin", function (content) {
@@ -108,7 +108,7 @@ export default function (eleventyConfig) {
         removeComments: true,
         collapseWhitespace: true,
         minifyJS: true,
-        minifyCSS: true,
+        minifyCSS: true
       });
 
       return minified;
