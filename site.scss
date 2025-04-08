@@ -41,9 +41,6 @@ hgroup {
 .nav-label {
     text-wrap: nowrap;
 }
-nav > ul > li :hover {
-    background-color: var(--pico-mark-background-color);
-}
 .post-date {
     font-size: smaller;
     color: var(--pico-muted-color);
