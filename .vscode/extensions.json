@@ -2,6 +2,7 @@
     "recommendations": [
         "github.vscode-github-actions",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "sissel.shopify-liquid"
     ]
 }
