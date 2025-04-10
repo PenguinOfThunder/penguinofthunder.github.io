@@ -1,7 +1,8 @@
 import {
   EleventyHtmlBasePlugin,
   EleventyI18nPlugin,
-  EleventyRenderPlugin
+  EleventyRenderPlugin,
+  IdAttributePlugin
 } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import i18n from "eleventy-plugin-i18n";
@@ -27,6 +28,21 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
     // Added in 5.0.0, throw errors on invalid language names
     errorOnInvalidLanguage: false
+  });
+
+  eleventyConfig.addPlugin(IdAttributePlugin, {
+    selector: "h1,h2,h3,h4,h5,h6", // default
+
+    // swaps html entities (like &amp;) to their counterparts before slugify-ing
+    decodeEntities: true,
+
+    // check for duplicate `id` attributes in application code?
+    checkDuplicates: "error", // `false` to disable
+
+    // by default we use Eleventy’s built-in `slugify` filter:
+    slugify: eleventyConfig.getFilter("slugify"),
+
+    // filter: ({ page }) => true;
   });
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
     baseHref: process.env.NODE_ENV === "production" ? publicBaseUrl : "/",
@@ -66,7 +82,6 @@ export default function (eleventyConfig) {
       }
     ]
   });
-
   // custom collections
   eleventyConfig.addCollection("published_posts", (collection) => {
     return collection
@@ -118,9 +133,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addTransform("htmlmin", function (content) {
     if ((this.page.outputPath || "").endsWith(".html")) {
       let minified = htmlmin.minify(content, {
+        html5: true,
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
+        conservativeCollapse: false,
         minifyJS: true,
         minifyCSS: true
       });
