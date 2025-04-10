@@ -1,0 +1,15 @@
+<dl>
+{%- for post in collections.published_posts -%}
+    <dt>
+        <a href="{{ post.url | locale_url }}"><strong lang="{{ post.page.lang }}">{{ post.data.title | escape }}</strong></a>
+        {%- if post.data.subtitle -%}: <span lang="{{ post.page.lang }}">{{ post.data.subtitle }}</span>{%- endif -%}
+        <em class="text-muted"> &mdash; {{ post.date | datei18n: locales: lang, dateStyle: "long", timeZone:"America/New_York"}}</em>
+    </dt>
+    <dd>
+        {% if post.page.excerpt -%}
+            <blockquote class="excerpt" lang="{{ post.page.lang }}">{{ post.page.excerpt | strip_html | truncate: 200 | escape }}</blockquote>
+        {%- endif %}
+        {% render "taglist.liquid", page: page, tags: post.data.tags %}
+    </dd>
+{% endfor %}
+</dl>

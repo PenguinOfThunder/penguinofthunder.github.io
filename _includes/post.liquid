@@ -7,6 +7,7 @@ layout: bare.liquid
     <div class="post-date text-secondary">
         <small><em><time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}">{{ page.date | datei18n: dateStyle: "full", timeStyle: "short" }}</time></em></small>
     </div>
+    <div class="post-tags">{% render "taglist.liquid", page: page, tags: tags  %}</div>
 {%- if title and subtitle -%}
 <hgroup>
 <h1>{{ title | escape }}</h1>
@@ -15,7 +16,6 @@ layout: bare.liquid
 {%- else -%}
 {%- if title -%}<h1>{{ title | escape }}</h1>{%- endif -%}
 {% endif %}
-
 </header>
 <main>{{ content }}</main>
 {%- render "footer.liquid" page: page, common: common -%}

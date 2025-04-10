@@ -1,0 +1,10 @@
+{% assign post_tags = tags | filter_array: except: "post" %}
+{%- if post_tags -%}
+    <div class="topiclist">
+        {%- for topic in post_tags -%}
+            <span class="topic">
+                {{ topic | i18n | escape }}
+            </span>
+        {%- endfor -%}
+    </div>
+{% endif  %}

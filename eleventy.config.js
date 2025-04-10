@@ -17,6 +17,10 @@ const publicBaseUrl = "https://penguinofthunder.github.io/";
 
 export default function (eleventyConfig) {
   eleventyConfig.setDataFileSuffixes([".11tydata", ""]);
+  eleventyConfig.setFrontMatterParsingOptions({
+    excerpt: true,
+    excerpt_separator: "<!-- excerpt -->"
+  });
   eleventyConfig.addPassthroughCopy("images/");
   eleventyConfig.addGlobalData("languages", ["en", "nb"]);
   eleventyConfig.addPlugin(EleventyRenderPlugin);
@@ -48,8 +52,8 @@ export default function (eleventyConfig) {
       links: "locale_links"
     },
     // When to throw errors for missing localized content files
-    errorMode: "strict" // throw an error if content is missing at /en/slug
-    // errorMode: "allow-fallback", // only throw an error when the content is missing at both /en/slug and /slug
+    // errorMode: "strict" // throw an error if content is missing at /en/slug
+    errorMode: "allow-fallback" // only throw an error when the content is missing at both /en/slug and /slug
     // errorMode: "never", // don’t throw errors for missing content
   });
   eleventyConfig.addPlugin(pluginIcons, {
@@ -62,6 +66,15 @@ export default function (eleventyConfig) {
       }
     ]
   });
+
+  // custom collections
+  eleventyConfig.addCollection("published_posts", (collection) => {
+    return collection
+      .getFilteredByTag("post")
+      .filter((post) => Boolean(post.data.published))
+      .sort((a, b) => b.date - a.date);
+  });
+
   eleventyConfig.addPassthroughCopy("images/");
   eleventyConfig.addFilter("datei18n", customFilters.datetime_format);
   eleventyConfig.addFilter("display_name", customFilters.display_name);
@@ -74,6 +87,7 @@ export default function (eleventyConfig) {
     "dateTimeField_name",
     customFilters.dateTimeField_name
   );
+  eleventyConfig.addFilter("filter_array", customFilters.filter_array);
 
   // amend markdown features
   eleventyConfig.amendLibrary("md", (mdLib) => {
