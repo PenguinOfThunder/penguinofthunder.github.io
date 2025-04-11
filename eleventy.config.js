@@ -4,6 +4,7 @@ import {
   EleventyRenderPlugin,
   IdAttributePlugin
 } from "@11ty/eleventy";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import i18n from "eleventy-plugin-i18n";
 import pluginIcons from "eleventy-plugin-icons";
@@ -22,8 +23,22 @@ export default function (eleventyConfig) {
     excerpt: true,
     excerpt_separator: "<!-- excerpt -->"
   });
-  eleventyConfig.addPassthroughCopy("images/");
   eleventyConfig.addGlobalData("languages", ["en", "nb"]);
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    // output image formats
+    formats: ["avif", "webp", "jpeg", "auto"],
+    // output image widths
+    widths: ["auto"],
+    svgShortCircuit: "size",
+    // optional, attributes assigned on <img> nodes override these values
+    htmlOptions: {
+      imgAttributes: {
+        loading: "lazy",
+        decoding: "async"
+      },
+      pictureAttributes: {}
+    }
+  });
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(syntaxHighlight, {
     // Added in 5.0.0, throw errors on invalid language names
@@ -40,7 +55,7 @@ export default function (eleventyConfig) {
     checkDuplicates: "error", // `false` to disable
 
     // by default we use Eleventy’s built-in `slugify` filter:
-    slugify: eleventyConfig.getFilter("slugify"),
+    slugify: eleventyConfig.getFilter("slugify")
 
     // filter: ({ page }) => true;
   });
@@ -90,7 +105,19 @@ export default function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
-  eleventyConfig.addPassthroughCopy("images/");
+  eleventyConfig.addPassthroughCopy("assets/");
+  eleventyConfig.addBundle("script", {
+    outputFileExtension: "js",
+    shortcodeName: "script",
+    bundleExportKey: "bundle",
+    toFileDirectory: "./assets/"
+  });
+  eleventyConfig.addBundle("css", {
+    outputFileExtension: "css",
+    shortcodeName: "css",
+    bundleExportKey: "bundle",
+    toFileDirectory: "./assets/"
+  });
   eleventyConfig.addFilter("datei18n", customFilters.datetime_format);
   eleventyConfig.addFilter("display_name", customFilters.display_name);
   eleventyConfig.addFilter("language_name", customFilters.language_name);

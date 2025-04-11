@@ -1,4 +1,4 @@
-<script>  
+{%- script %}
   function setTheme(newTheme) {
     if (newTheme == "light" || newTheme == "dark") {
       document.documentElement.setAttribute("data-theme", newTheme);
@@ -26,7 +26,7 @@
     });
     setTheme(getPreferredTheme());
   });
-  </script>
+{% endscript -%}
 <details class="dropdown">
   <summary>{% icon "palette" %}</summary>
   <ul dir="rtl">
