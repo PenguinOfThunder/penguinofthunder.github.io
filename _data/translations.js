@@ -7,7 +7,8 @@ export default {
       nb: "En personlig nettside for og av Penguin of Thunder.",
       de: "Eine persönliche Website für und von Penguin of Thunder.",
       fr: "Un site personnel pour et par Penguin of Thunder.",
-      es: "Un sitio personal para y por Penguin of Thunder."
+      es: "Un sitio personal para y por Penguin of Thunder.",
+      eo: "Persona retejo por kaj de Penguin of Thunder."
     }
   },
   copyright: {
@@ -15,42 +16,48 @@ export default {
     nb: "Opphavsrett",
     de: "Urheberrecht",
     fr: "Droit d'auteur",
-    es: "Derechos de autor"
+    es: "Derechos de autor",
+    eo: "Kopirajto"
   },
   choose_language: {
     en: "Choose language",
     nb: "Velg språk",
     de: "Sprache wählen",
     fr: "Choisir la langue",
-    es: "Elegir idioma"
+    es: "Elegir idioma",
+    eo: "Elekti lingvon"
   },
   dark_theme: {
     en: "Dark mode",
     nb: "Mørk modus",
     de: "Dunkler Modus",
     fr: "Mode sombre",
-    es: "Modo oscuro"
+    es: "Modo oscuro",
+    eo: "Mallumo"
   },
   light_theme: {
     en: "Light mode",
     nb: "Lys modus",
     de: "Heller Modus",
     fr: "Mode clair",
-    es: "Modo claro"
+    es: "Modo claro",
+    eo: "Luma modo"
   },
   system_theme: {
     en: "System theme",
     nb: "Systemtema",
     de: "Systemthema",
     fr: "Thème système",
-    es: "Tema del sistema"
+    es: "Tema del sistema",
+    eo: "Sistemo temo"
   },
   read_in: {
     nb: "Les på",
     en: "Read in",
     de: "Lesen in",
     fr: "Lire en",
-    es: "Leer en"
+    es: "Leer en",
+    eo: "Legi en"
   },
   links: {
     home: {
@@ -58,28 +65,32 @@ export default {
       en: "Home",
       de: "Startseite",
       fr: "Accueil",
-      es: "Inicio"
+      es: "Inicio",
+      eo: "Hejmo"
     },
     posts: {
       nb: "Innlegg",
       en: "Posts",
       de: "Beiträge",
       fr: "Articles",
-      es: "Publicaciones"
+      es: "Publicaciones",
+      eo: "Enskribaĵoj"
     },
     projects: {
       nb: "Prosjekter",
       en: "Projects",
       de: "Projekte",
       fr: "Projets",
-      es: "Proyectos"
+      es: "Proyectos",
+      eo: "Projektoj"
     },
     about: {
       nb: "Om meg",
       en: "About me",
       de: "Über mich",
       fr: "À propos de moi",
-      es: "Sobre mí"
+      es: "Sobre mí",
+      eo: "Pri mi"
     }
   },
   post: {
@@ -87,8 +98,10 @@ export default {
     en: "Post",
     de: "Beitrag",
     fr: "Article",
-    es: "Publicación"
+    es: "Publicación",
+    eo: "Enskribaĵo"
   },
+  // Topics:
   topics: {
     nb: "Emner",
     en: "Topics",
@@ -109,5 +122,19 @@ export default {
     de: "Testen",
     fr: "Test",
     es: "Pruebas"
+  },
+  home_lab:{
+    nb: "Hjemmelab",
+    en: "Home lab",
+    de: "Heimlabor",
+    fr: "Laboratoire à domicile",
+    es: "Laboratorio en casa"
+  },
+  blogging: {
+    nb: "Blogging",
+    en: "Blogging",
+    de: "Bloggen",
+    fr: "Bloguer",
+    es: "Bloguear"
   }
 };

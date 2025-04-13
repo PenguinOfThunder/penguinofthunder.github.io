@@ -11,9 +11,12 @@ import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItMark from "markdown-it-mark";
+import markdownItAnchor from "markdown-it-anchor";
+import markdownItTocDoneRight from "markdown-it-toc-done-right";
 import * as sass from "sass";
 import translations from "./_data/translations.js";
 import * as customFilters from "./lib/custom-filters.js";
+import { ht } from "date-fns/locale";
 
 const publicBaseUrl = "https://penguinofthunder.github.io/";
 
@@ -136,6 +139,20 @@ export default function (eleventyConfig) {
     mdLib.set({ html: true, breaks: true, typographer: true, linkify: false });
     mdLib.use(markdownItMark);
     mdLib.use(markdownItFootnote);
+    mdLib.use(markdownItAnchor, {
+      html: false,
+      typographer: true,
+      xhtmlOut: true,
+      permalink: true,
+      permalinkClass: "anchor",
+      permalinkBefore: false
+    });
+    // https://github.com/nagaozen/markdown-it-toc-done-right
+    mdLib.use(markdownItTocDoneRight, {
+      listType: "ol",
+      containerClass: "table-of-contents",
+      containerId: "toc"
+    });
   });
 
   // Add SCSS support
