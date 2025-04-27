@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="{{ "meta.description" | i18n | escape }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <meta name="color-scheme" content="light dark">    
     <title>{{ title }}{% if languages[page.lang] %} ({{ page.lang | language_name }}){% endif %}</title>
     <link rel="stylesheet" href="/site.css" />
     <link rel="stylesheet" href="{% getBundleFileUrl "css" %}" />
@@ -14,7 +13,9 @@
     {%- for link in lang_links -%}
       <link rel="alternate" hreflang="{{link.lang}}" href="{{link.url}}" />
     {%- endfor -%}
+    {% favicons "./assets/penguin.png" %}
     </head>
+        {% comment %} <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" /> {% endcomment %}
   <body class="container">
     {{ content }}
     <script src="{% getBundleFileUrl "script" %}"></script>
