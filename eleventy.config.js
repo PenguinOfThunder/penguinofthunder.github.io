@@ -6,17 +6,17 @@ import {
 } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import faviconsPlugin from "eleventy-plugin-gen-favicons";
 import i18n from "eleventy-plugin-i18n";
 import pluginIcons from "eleventy-plugin-icons";
 import htmlmin from "html-minifier-terser";
+import markdownItAnchor from "markdown-it-anchor";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItMark from "markdown-it-mark";
-import markdownItAnchor from "markdown-it-anchor";
 import markdownItTocDoneRight from "markdown-it-toc-done-right";
 import * as sass from "sass";
 import translations from "./_data/translations.js";
 import * as customFilters from "./lib/custom-filters.js";
-import { ht } from "date-fns/locale";
 
 const publicBaseUrl = "https://penguinofthunder.github.io/";
 
@@ -27,6 +27,12 @@ export default function (eleventyConfig) {
     excerpt_separator: "<!-- excerpt -->"
   });
   eleventyConfig.addGlobalData("languages", ["en", "nb"]);
+  eleventyConfig.addPlugin(faviconsPlugin, {
+    generateManifest: true,
+    manifestData: {
+      "name": "PenguinOfThunder's Homepage"
+    }
+  });
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     // output image formats
     formats: ["avif", "webp", "jpeg", "auto"],
