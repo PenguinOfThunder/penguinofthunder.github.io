@@ -36,7 +36,7 @@
     "markdown-it-mark": "^4.0.0",
     "markdown-it-toc-done-right": "^4.2.0",
     "rimraf": "^6.0.1",
-    "sass": "^1.86.3"
+    "sass": "^1.87.0"
   },
   "prettier": {
     "singleQuote": false,
