@@ -45,6 +45,6 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "lucide-static": "^0.544.0",
-    "sass": "^1.92.1"
+    "sass": "^1.93.0"
   }
 }
