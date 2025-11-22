@@ -31,7 +31,7 @@
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
     "markdown-it-toc-done-right": "^4.2.0",
-    "rimraf": "^6.1.0"
+    "rimraf": "^6.1.2"
   },
   "prettier": {
     "singleQuote": false,
@@ -44,7 +44,7 @@
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "lucide-static": "^0.545.0",
-    "sass": "^1.93.3"
+    "lucide-static": "^0.554.0",
+    "sass": "^1.94.2"
   }
 }
